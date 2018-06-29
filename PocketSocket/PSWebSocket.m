@@ -160,6 +160,8 @@
             port = (_secure) ? 443 : 80;
         }
         
+        NSLog(@"target port: %d, host: %@", port, host);
+        
         CFReadStreamRef readStream = nil;
         CFWriteStreamRef writeStream = nil;
         CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault,
