@@ -195,6 +195,12 @@
             [_inputStream setProperty:networkServiceType forKey:NSStreamNetworkServiceType];
             [_outputStream setProperty:networkServiceType forKey:NSStreamNetworkServiceType];
         }
+        
+        if (_secure) {
+            [_inputStream setProperty:NSStreamSocketSecurityLevelNegotiatedSSL forKey:NSStreamSocketSecurityLevelKey];
+            NSDictionary *sslProperties = [NSDictionary dictionaryWithObjectsAndKeys:host, (__bridge id)kCFStreamSSLPeerName, nil];
+            [_inputStream setProperty:sslProperties forKey:(__bridge_transfer NSString*)kCFStreamPropertySSLSettings];
+        }
 	}
 	return self;
 }
